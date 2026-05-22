@@ -92,6 +92,8 @@
   let hoverPreviewActive = false;
   let hoverStartedPlayback = false;
   let hoverWasPlayingBefore = false;
+  let mediaSwitchId = 0;
+  let ignoringYouTubeEvents = false;
 
   const formatTime = (seconds) => {
     if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
@@ -100,10 +102,23 @@
     return `${min}:${sec}`;
   };
 
-  const selectedOption = () => select?.selectedOptions?.[0];
+  const selectedOption = () => select?.selectedOptions?.[0] || null;
   const selectedType = () => selectedOption()?.dataset.type || 'audio';
 
+  const getAudioAttr = () => audio?.getAttribute('src') || '';
+
+  const isSelectedYouTube = (videoId = currentYouTubeVideoId) => {
+    const option = selectedOption();
+    return Boolean(
+      option &&
+      option.dataset.type === 'youtube' &&
+      activeSource === 'youtube' &&
+      (!videoId || option.dataset.youtubeId === videoId)
+    );
+  };
+
   const isYouTubePlaying = () => {
+    if (!isSelectedYouTube()) return false;
     try {
       return youtubePlayer?.getPlayerState?.() === window.YT?.PlayerState?.PLAYING;
     } catch {
@@ -113,7 +128,7 @@
 
   const isCurrentPlaying = () => {
     if (selectedType() === 'youtube') return isYouTubePlaying();
-    return Boolean(audio && !audio.paused && !audio.ended);
+    return Boolean(activeSource === 'audio' && audio && !audio.paused && !audio.ended);
   };
 
   const setPlaying = (playing) => {
@@ -194,7 +209,7 @@
   };
 
   const syncYouTubeTitleFromPlayer = (videoId = currentYouTubeVideoId, attempt = 0) => {
-    if (!videoId || !youtubePlayer?.getVideoData) return;
+    if (!videoId || !youtubePlayer?.getVideoData || !isSelectedYouTube(videoId)) return;
 
     window.clearTimeout(youtubeTitleRetryTimer);
 
@@ -225,7 +240,7 @@
   };
 
   const updateYouTubeProgress = () => {
-    if (!youtubePlayer?.getDuration || activeSource !== 'youtube') return;
+    if (!youtubePlayer?.getDuration || !isSelectedYouTube()) return;
     const duration = youtubePlayer.getDuration();
     const current = youtubePlayer.getCurrentTime();
     if (timeDuration) timeDuration.textContent = formatTime(duration);
@@ -239,15 +254,22 @@
     youtubeTimer = window.setInterval(updateYouTubeProgress, 500);
   };
 
-  const stopYouTube = () => {
+  const stopYouTube = ({ hide = true } = {}) => {
     stopYouTubeTimer();
+    window.clearTimeout(youtubeTitleRetryTimer);
+    youtubeTitleRetryTimer = null;
     if (pendingYouTube) pendingYouTube.autoplay = false;
+
+    ignoringYouTubeEvents = true;
     try {
+      youtubePlayer?.pauseVideo?.();
       youtubePlayer?.stopVideo?.();
     } catch {
-      // The YouTube iframe can briefly be unavailable during reloads.
+      // The YouTube iframe can briefly be unavailable during source changes.
     }
-    if (youtubeShell) youtubeShell.hidden = true;
+    window.setTimeout(() => { ignoringYouTubeEvents = false; }, 350);
+
+    if (hide && youtubeShell) youtubeShell.hidden = true;
   };
 
   const pauseCurrentTrack = () => {
@@ -292,7 +314,8 @@
   };
 
   const createYouTubePlayer = (videoId, autoplay = false) => {
-    youtubeShell && (youtubeShell.hidden = false);
+    if (youtubeShell) youtubeShell.hidden = false;
+    activeSource = 'youtube';
     currentYouTubeVideoId = videoId;
 
     youtubePlayer = new window.YT.Player('youtubePlayer', {
@@ -300,6 +323,7 @@
       playerVars: buildYouTubePlayerVars(),
       events: {
         onReady: (event) => {
+          if (!isSelectedYouTube(videoId)) return;
           const target = event.target;
           target.setVolume(Math.round(Number(volume?.value ?? 1) * 100));
           if (autoplay) target.playVideo();
@@ -309,10 +333,15 @@
         },
         onStateChange: (event) => {
           const states = window.YT?.PlayerState || {};
-          syncYouTubeTitleFromPlayer(currentYouTubeVideoId);
+          const videoIdForEvent = currentYouTubeVideoId;
+
+          if (ignoringYouTubeEvents || !isSelectedYouTube(videoIdForEvent)) {
+            return;
+          }
+
+          syncYouTubeTitleFromPlayer(videoIdForEvent);
 
           if (event.data === states.PLAYING) {
-            activeSource = 'youtube';
             setPlaying(true);
             startYouTubeTimer();
           } else if ([states.PAUSED, states.ENDED, states.CUED].includes(event.data)) {
@@ -363,29 +392,58 @@
     }
   };
 
+  const prepareAudioOption = (option) => {
+    if (!audio || !option) return;
+
+    mediaSwitchId += 1;
+    activeSource = 'audio';
+    currentYouTubeVideoId = null;
+    pendingYouTube = null;
+    stopYouTube({ hide: true });
+
+    const src = option.value;
+    if (getAudioAttr() !== src) {
+      audio.pause();
+      audio.setAttribute('src', src);
+      audio.load();
+    }
+
+    if (audio.ended || (Number.isFinite(audio.duration) && audio.currentTime >= audio.duration)) {
+      try { audio.currentTime = 0; } catch {}
+    }
+  };
+
   const loadFromOption = (autoplay = false) => {
     if (!audio || !select) return;
     const option = selectedOption();
     if (!option) return;
 
+    const switchId = ++mediaSwitchId;
     applyTrackMeta(option);
     resetProgress();
+    setPlaying(false);
 
     const type = option.dataset.type || 'audio';
 
     if (type === 'youtube') {
+      activeSource = 'youtube';
+      currentYouTubeVideoId = option.dataset.youtubeId || null;
       audio.pause();
       audio.removeAttribute('src');
       audio.load();
-      ensureYouTubePlayer(option.dataset.youtubeId, autoplay);
+      ensureYouTubePlayer(currentYouTubeVideoId, autoplay);
       return;
     }
 
-    activeSource = 'audio';
-    stopYouTube();
-    audio.src = option.value;
-    audio.load();
-    if (autoplay) audio.play().catch(() => setPlaying(false));
+    prepareAudioOption(option);
+
+    if (autoplay) {
+      audio.play().then(() => {
+        if (mediaSwitchId === switchId && selectedType() === 'audio') setPlaying(true);
+      }).catch(() => {
+        if (mediaSwitchId === switchId) setPlaying(false);
+      });
+    }
   };
 
   const playCurrentTrack = async () => {
@@ -404,8 +462,13 @@
       return true;
     }
 
-    stopYouTube();
-    if (!audio?.src) loadFromOption(false);
+    prepareAudioOption(option);
+
+    if (!audio) return false;
+
+    if (audio.ended || (Number.isFinite(audio.duration) && audio.currentTime >= audio.duration)) {
+      try { audio.currentTime = 0; } catch {}
+    }
 
     try {
       await audio.play();
@@ -458,20 +521,36 @@
   });
 
   audio?.addEventListener('play', () => {
+    if (selectedType() !== 'audio') {
+      audio.pause();
+      return;
+    }
     activeSource = 'audio';
-    stopYouTube();
+    currentYouTubeVideoId = null;
+    stopYouTube({ hide: true });
     setPlaying(true);
   });
 
-  audio?.addEventListener('pause', () => setPlaying(false));
-  audio?.addEventListener('ended', () => setPlaying(false));
+  audio?.addEventListener('pause', () => {
+    if (activeSource === 'audio' && selectedType() === 'audio') setPlaying(false);
+  });
+
+  audio?.addEventListener('ended', () => {
+    if (activeSource !== 'audio' || selectedType() !== 'audio') return;
+    setPlaying(false);
+    if (progressBar) progressBar.value = '0';
+    if (timeCurrent) timeCurrent.textContent = '0:00';
+    try { audio.currentTime = 0; } catch {}
+  });
 
   audio?.addEventListener('loadedmetadata', () => {
-    if (timeDuration) timeDuration.textContent = formatTime(audio.duration);
+    if (activeSource === 'audio' && selectedType() === 'audio' && timeDuration) {
+      timeDuration.textContent = formatTime(audio.duration);
+    }
   });
 
   audio?.addEventListener('timeupdate', () => {
-    if (activeSource !== 'audio' || !progressBar || !audio.duration) return;
+    if (activeSource !== 'audio' || selectedType() !== 'audio' || !progressBar || !audio.duration) return;
     progressBar.value = String((audio.currentTime / audio.duration) * 100);
     if (timeCurrent) timeCurrent.textContent = formatTime(audio.currentTime);
   });
@@ -479,7 +558,7 @@
   progressBar?.addEventListener('input', () => {
     const amount = Number(progressBar.value) / 100;
 
-    if (activeSource === 'youtube') {
+    if (activeSource === 'youtube' && selectedType() === 'youtube') {
       const duration = youtubePlayer?.getDuration?.();
       if (duration) youtubePlayer.seekTo(amount * duration, true);
       updateYouTubeProgress();

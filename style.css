@@ -373,3 +373,23 @@ body.is-playing .music-disc,
     transition: transform 220ms ease;
   }
 }
+
+/* === Contact copy spacing polish === */
+.contact-card h2 {
+  margin-bottom: 22px;
+}
+
+.contact-card > div:first-child > p {
+  margin-bottom: 22px;
+  max-width: 62ch;
+}
+
+@media (max-width: 720px) {
+  .contact-card h2 {
+    margin-bottom: 16px;
+  }
+
+  .contact-card > div:first-child > p {
+    margin-bottom: 18px;
+  }
+}

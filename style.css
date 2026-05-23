@@ -660,3 +660,35 @@ input[type="file"]::file-selector-button {
   .writing-grid { grid-template-columns: 1fr; }
   .writing-section { padding-top: 16px; }
 }
+
+
+/* === Project grid width fix ===
+   The project cards must sit directly inside the full container, not inside the narrower section heading. */
+#projects .filters,
+#projects .project-grid {
+  width: 100%;
+  max-width: none;
+}
+
+#projects .project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+#projects .project-card {
+  width: 100%;
+}
+
+@media (max-width: 1040px) {
+  #projects .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #projects .project-grid {
+    grid-template-columns: 1fr;
+  }
+}

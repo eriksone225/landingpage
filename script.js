@@ -636,5 +636,39 @@
     loadFromOption(true);
   });
 
+
+
+  const langToggle = $('#langToggle');
+  const translatable = $$('[data-id][data-en]');
+  const placeholderTranslatable = $$('[data-placeholder-id][data-placeholder-en]');
+
+  const setLanguage = (lang) => {
+    const normalized = lang === 'en' ? 'en' : 'id';
+    document.documentElement.lang = normalized;
+    translatable.forEach((el) => {
+      const value = normalized === 'en' ? el.dataset.en : el.dataset.id;
+      if (typeof value === 'string') el.textContent = value;
+    });
+    placeholderTranslatable.forEach((el) => {
+      const value = normalized === 'en' ? el.dataset.placeholderEn : el.dataset.placeholderId;
+      if (typeof value === 'string') el.setAttribute('placeholder', value);
+    });
+    if (langToggle) {
+      langToggle.textContent = normalized === 'en' ? 'ID' : 'EN';
+      langToggle.dataset.current = normalized;
+      langToggle.setAttribute('aria-label', normalized === 'en' ? 'Switch to Indonesian' : 'Switch to English');
+    }
+    try { localStorage.setItem('farrel-portfolio-lang', normalized); } catch {}
+  };
+
+  langToggle?.addEventListener('click', () => {
+    const current = langToggle.dataset.current === 'en' ? 'en' : 'id';
+    setLanguage(current === 'en' ? 'id' : 'en');
+  });
+
+  let savedLang = 'id';
+  try { savedLang = localStorage.getItem('farrel-portfolio-lang') || 'id'; } catch {}
+  setLanguage(savedLang);
+
   loadFromOption(false);
 })();

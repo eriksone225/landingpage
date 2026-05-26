@@ -9,22 +9,33 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" type="image/png" href="assets/images/icons.png" />
     <link rel="stylesheet" href="style.css" />
-    <title>Farrel Krisna | Code, Games, and Story Worlds</title>
-    <meta name="description" content="Portfolio Farrel Krisna: mahasiswa informatika yang membangun browser games, web tools, visual interfaces, and original story worlds." />
+    <title>Farrel Krisna | Portfolio</title>
+    <meta name="description" content="Portfolio Farrel Krisna: mahasiswa informatika yang membangun web tools, Android projects, AR prototypes, games, and interactive features." />
   </head>
   <body>
     <div class="scroll-progress" aria-hidden="true"></div>
-    <a class="skip-link" href="#main">Lewati ke konten utama</a>
+    <a class="skip-link" href="#main" data-id="Lewati ke konten utama" data-en="Skip to main content">Lewati ke konten utama</a>
     <header class="site-header" aria-label="Navigasi utama">
       <nav class="nav">
         <a class="brand" href="#home" aria-label="Farrel Krisna Portfolio">
           <img class="brand-logo" src="assets/images/icons.png" alt="Logo Farrel Krisna" />
-          <span class="brand-text"><span class="brand-title">Farrel Krisna</span><span class="brand-subtitle">Portfolio · Code · Film · Writing</span></span>
+          <span class="brand-text"><span class="brand-title">Farrel Krisna</span><span class="brand-subtitle" data-id="Portfolio · Code · Game · Film" data-en="Portfolio · Code · Games · Film">Portfolio · Code · Game · Film</span></span>
         </a>
         <ul class="nav-links" id="navLinks">
-          <li><a href="#profil">Profil</a></li><li><a href="#skills">Skill</a></li><li><a href="#projects">Project</a></li><li><a href="#writing">Writing</a></li><li><a href="#music">Musik</a></li><li><a href="#contact">Kontak</a></li>
+          <li><a href="#profil" data-id="Profil" data-en="Profile">Profil</a></li>
+          <li><a href="#skills" data-id="Skill" data-en="Skills">Skill</a></li>
+          <li><a href="#languages" data-id="Bahasa" data-en="Languages">Bahasa</a></li>
+          <li><a href="#projects" data-id="Project" data-en="Projects">Project</a></li>
+          <li><a href="#roadmap" data-id="Roadmap" data-en="Roadmap">Roadmap</a></li>
+          <li><a href="#music" data-id="Musik" data-en="Music">Musik</a></li>
+          <li><a href="#contact" data-id="Kontak" data-en="Contact">Kontak</a></li>
         </ul>
-        <div class="nav-actions"><a class="btn btn-secondary" href="#projects">Lihat Karya</a><a class="btn btn-primary" href="#contact">Collab</a><button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button></div>
+        <div class="nav-actions">
+          <button class="btn btn-ghost lang-toggle" id="langToggle" type="button" aria-label="Switch language" data-current="id">EN</button>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/farrel-krisnanegara-b2a252220/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-primary" href="#contact" data-id="Collab" data-en="Work with me">Collab</a>
+          <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button>
+        </div>
       </nav>
     </header>
 
@@ -34,15 +45,15 @@
         <div class="hero-shader" aria-hidden="true"></div>
         <div class="hero-home">
           <div class="hero-copy reveal">
-            <span class="eyebrow">Informatics Student · Browser Games · Story Worlds</span>
-            <h1 class="hero-title">I make browser games, useful web tools, and stories with grit.</h1>
-            <p class="hero-subtitle">Saya Farrel Krisna. Saya suka membuat proyek yang bisa langsung dicoba: game web, portfolio interaktif, prototype image matching, dan dunia cerita yang terasa nyata.</p>
-            <div class="hero-actions"><a class="btn btn-primary" href="#projects">Lihat Project</a><a class="btn btn-secondary" href="#writing">Baca Writing</a></div>
+            <span class="eyebrow" data-id="Mahasiswa Informatika · Web · Android · AR" data-en="Informatics Student · Web · Android · AR">Mahasiswa Informatika · Web · Android · AR</span>
+            <h1 class="hero-title" data-id="Saya membangun web tools, game, aplikasi, dan fitur interaktif." data-en="I build web tools, games, apps, and interactive features.">Saya membangun web tools, game, aplikasi, dan fitur interaktif.</h1>
+            <p class="hero-subtitle" data-id="Saya Farrel Krisna, mahasiswa Politeknik Manufaktur Bandung yang suka mengubah tugas, eksperimen, dan ide cerita menjadi produk digital yang bisa langsung dicoba." data-en="I am Farrel Krisna, a Politeknik Manufaktur Bandung student who likes turning assignments, experiments, and story ideas into digital products people can actually try.">Saya Farrel Krisna, mahasiswa Politeknik Manufaktur Bandung yang suka mengubah tugas, eksperimen, dan ide cerita menjadi produk digital yang bisa langsung dicoba.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="#projects" data-id="Lihat Project" data-en="See Projects">Lihat Project</a><a class="btn btn-secondary" href="#roadmap" data-id="Lihat Roadmap" data-en="See Roadmap">Lihat Roadmap</a></div>
           </div>
           <div class="hero-info-dock reveal">
-            <article class="hero-info-card"><strong>Game + Web</strong><span>Ball Battle Arena, UI experiments, dan project browser yang saya update lewat iterasi nyata.</span></article>
-            <article class="hero-info-card"><strong>Writing Shelf</strong><span>SEAVerse, Batavia, Ordinary People, character dossiers, lore files, and scene excerpts.</span></article>
-            <article class="hero-info-card"><strong>Tools + Prototypes</strong><span>Image Harvester, visual matching ideas, music player experiments, and small systems made to solve specific problems.</span></article>
+            <article class="hero-info-card"><strong data-id="Web + Backend" data-en="Web + Backend">Web + Backend</strong><span data-id="TypeScript, JavaScript, Python, C#, dan interface yang dibuat untuk terasa rapi, cepat, dan tidak generik." data-en="TypeScript, JavaScript, Python, C#, and interfaces built to feel clean, fast, and not generic.">TypeScript, JavaScript, Python, C#, dan interface yang dibuat untuk terasa rapi, cepat, dan tidak generik.</span></article>
+            <article class="hero-info-card"><strong data-id="Mobile + AR" data-en="Mobile + AR">Mobile + AR</strong><span data-id="Android/Kotlin, Unity AR, dan project IoT/AR yang menggabungkan hardware idea dengan visual interaction." data-en="Android/Kotlin, Unity AR, and IoT/AR projects that combine hardware ideas with visual interaction.">Android/Kotlin, Unity AR, dan project IoT/AR yang menggabungkan hardware idea dengan visual interaction.</span></article>
+            <article class="hero-info-card"><strong data-id="Game + Feature" data-en="Game + Feature">Game + Feature</strong><span data-id="Browser game, music player interaktif, image matcher, dan prototype kecil yang dibuat untuk menyelesaikan masalah nyata." data-en="Browser games, an interactive music player, image matcher, and small prototypes made to solve real problems.">Browser game, music player interaktif, image matcher, dan prototype kecil yang dibuat untuk menyelesaikan masalah nyata.</span></article>
           </div>
         </div>
       </section>
@@ -50,123 +61,134 @@
       <section id="profil" class="section">
         <div class="container split">
           <div class="feature-panel reveal">
-            <h3>I work where code, visuals, and story overlap.</h3>
-            <div class="mini-stats"><div class="mini-stat"><strong>D4</strong><span>Mahasiswa Informatika</span></div><div class="mini-stat"><strong>3+</strong><span>Bidang kreatif utama</span></div><div class="mini-stat"><strong>Plan</strong><span>Story & worldbuilding</span></div><div class="mini-stat"><strong>BBA</strong><span>Browser battle game</span></div></div>
+            <h3 data-id="Saya ada di tengah coding, visual, dan cerita." data-en="I sit between code, visuals, and story.">Saya ada di tengah coding, visual, dan cerita.</h3>
+            <p data-id="Portfolio ini bukan cuma daftar tugas. Ini rangkuman cara saya belajar: membuat sesuatu, memecahkannya, memperbaikinya, lalu membuatnya terasa lebih hidup." data-en="This portfolio is not just a task list. It is how I learn: build something, break it, fix it, then make it feel more alive.">Portfolio ini bukan cuma daftar tugas. Ini rangkuman cara saya belajar: membuat sesuatu, memecahkannya, memperbaikinya, lalu membuatnya terasa lebih hidup.</p>
+            <div class="mini-stats"><div class="mini-stat"><strong>D4</strong><span data-id="Teknologi Rekayasa Informatika" data-en="Informatics Engineering Technology">Teknologi Rekayasa Informatika</span></div><div class="mini-stat"><strong>2024+</strong><span data-id="Politeknik Manufaktur Bandung" data-en="Politeknik Manufaktur Bandung">Politeknik Manufaktur Bandung</span></div><div class="mini-stat"><strong>AR</strong><span data-id="Unity developer project lead" data-en="Unity developer project lead">Unity developer project lead</span></div><div class="mini-stat"><strong>CV</strong><span data-id="Image matcher prototype" data-en="Image matcher prototype">Image matcher prototype</span></div></div>
           </div>
           <div class="cards-grid">
-            <article class="glass-card reveal"><div class="card-icon">⌘</div><h3>Coder</h3><p>Membangun website, game browser, UI interaktif, sistem kecil, dan eksperimen JavaScript yang bisa langsung dimainkan atau dipakai.</p></article>
-            <article class="glass-card reveal"><div class="card-icon">✦</div><h3>Writer</h3><p>Merencanakan karakter, konflik, arc panjang, dan struktur cerita seperti SEAVerse, Batavia, dan Ordinary People dengan rasa sinematik.</p></article>
-            <article class="glass-card reveal"><div class="card-icon">◉</div><h3>Visual Maker</h3><p>Memikirkan mood, warna, layout, poster, logo, editing, dan cara sebuah project terasa punya identitas visual.</p></article>
+            <article class="glass-card reveal"><div class="card-icon">⌘</div><h3 data-id="Builder" data-en="Builder">Builder</h3><p data-id="Membangun website, game browser, UI interaktif, sistem kecil, dan eksperimen JavaScript yang bisa langsung dimainkan atau dipakai." data-en="Building websites, browser games, interactive UI, small systems, and JavaScript experiments that can be used or played directly.">Membangun website, game browser, UI interaktif, sistem kecil, dan eksperimen JavaScript yang bisa langsung dimainkan atau dipakai.</p></article>
+            <article class="glass-card reveal"><div class="card-icon">▣</div><h3 data-id="Problem solver" data-en="Problem solver">Problem solver</h3><p data-id="Saya suka membuat tools yang punya alasan jelas: memanen gambar, mencocokkan visual, membuat warung online, atau merapikan alur UI." data-en="I like making tools with a clear reason: harvesting images, matching visuals, building an online shop, or cleaning up a UI flow.">Saya suka membuat tools yang punya alasan jelas: memanen gambar, mencocokkan visual, membuat warung online, atau merapikan alur UI.</p></article>
+            <article class="glass-card reveal"><div class="card-icon">◉</div><h3 data-id="Visual thinker" data-en="Visual thinker">Visual thinker</h3><p data-id="Memikirkan mood, warna, layout, poster, logo, editing, dan cara sebuah project terasa punya identitas visual." data-en="Thinking about mood, color, layout, posters, logos, editing, and how a project earns its own visual identity.">Memikirkan mood, warna, layout, poster, logo, editing, dan cara sebuah project terasa punya identitas visual.</p></article>
           </div>
         </div>
       </section>
 
       <section id="skills" class="section">
         <div class="container">
-          <div class="section-heading center reveal"><span class="section-kicker">Skill Map</span><h2>Tiga fondasi teknis saya.</h2></div>
+          <div class="section-heading center reveal"><h2 data-id="Skill yang saya pakai untuk membangun project." data-en="Skills I use to build projects.">Skill yang saya pakai untuk membangun project.</h2><p data-id="Fokus saya bukan menghafal nama teknologi, tapi membuat hasil yang berjalan, bisa dites, dan enak dilihat." data-en="My focus is not memorizing technology names, but shipping things that run, can be tested, and look good.">Fokus saya bukan menghafal nama teknologi, tapi membuat hasil yang berjalan, bisa dites, dan enak dilihat.</p></div>
           <div class="cards-grid">
-            <article class="glass-card reveal"><div class="card-icon">JS</div><h3>Frontend & Interaction</h3><ul><li>HTML, CSS, JavaScript</li><li>Responsive layout</li><li>Game logic & UI states</li></ul></article>
-            <article class="glass-card reveal"><div class="card-icon">UI</div><h3>Interface Direction</h3><ul><li>Liquid glass aesthetic</li><li>Dashboard, hero, nav, cards</li><li>Visual hierarchy</li></ul></article>
-            <article class="glass-card reveal"><div class="card-icon">CV</div><h3>Prototype Thinking</h3><ul><li>Image similarity concept</li><li>Automation workflow</li><li>Tool-based problem solving</li></ul></article>
+            <article class="glass-card reveal"><div class="card-icon">WEB</div><h3 data-id="Frontend & Interaction" data-en="Frontend & Interaction">Frontend & Interaction</h3><ul><li>HTML, CSS, JavaScript, TypeScript</li><li>Responsive layout</li><li>Game logic & UI states</li></ul></article>
+            <article class="glass-card reveal"><div class="card-icon">APP</div><h3 data-id="Mobile & Product" data-en="Mobile & Product">Mobile & Product</h3><ul><li>Android, Kotlin</li><li>Web admin / app flow</li><li>Project iteration</li></ul></article>
+            <article class="glass-card reveal"><div class="card-icon">SYS</div><h3 data-id="Backend & Prototype" data-en="Backend & Prototype">Backend & Prototype</h3><ul><li>Python, C#</li><li>Image matching workflow</li><li>IoT / self-hosting mindset</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="languages" class="section language-section">
+        <div class="container">
+          <div class="section-heading center reveal"><h2 data-id="Bahasa dan stack yang benar-benar saya pakai." data-en="Languages and stacks I actually use.">Bahasa dan stack yang benar-benar saya pakai.</h2></div>
+          <div class="tech-orbit reveal" aria-label="Technology icons">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg" alt="Android" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" alt="Kotlin" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C Sharp" />
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" />
+          </div>
+          <div class="stack-pills reveal">
+            <span><strong>Mobile</strong><em>Android | Kotlin</em></span>
+            <span><strong>Web</strong><em>TypeScript | JavaScript</em></span>
+            <span><strong>Backend</strong><em>Python | C#</em></span>
+            <span><strong>Systems</strong><em>IoT | Self-Hosting</em></span>
+          </div>
+          <div class="language-panel reveal">
+            <div class="language-card compact-language-card">
+              <h3>Most Used Languages</h3>
+              <div class="language-bar" aria-label="Language usage bar">
+                <span class="bar-csharp" style="--w:59.17%"></span>
+                <span class="bar-js" style="--w:22.99%"></span>
+                <span class="bar-shader" style="--w:6.94%"></span>
+                <span class="bar-blade" style="--w:6.18%"></span>
+                <span class="bar-css" style="--w:4.72%"></span>
+              </div>
+              <div class="language-legend">
+                <span><i class="bar-csharp"></i>C# 59.17%</span>
+                <span><i class="bar-blade"></i>Blade 6.18%</span>
+                <span><i class="bar-js"></i>JavaScript 22.99%</span>
+                <span><i class="bar-css"></i>CSS 4.72%</span>
+                <span><i class="bar-shader"></i>ShaderLab 6.94%</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="projects" class="section">
         <div class="container">
-          <div class="section-heading reveal"><span class="section-kicker">Selected Work</span><h2>Projects with proof, not just claims.</h2></div>
-          <div class="filters reveal" aria-label="Filter project"><button class="filter-btn is-active" data-filter="all">Semua</button><button class="filter-btn" data-filter="code">Code</button><button class="filter-btn" data-filter="story">Story</button><button class="filter-btn" data-filter="design">Design</button></div>
+          <div class="section-heading reveal"><h2 data-id="Project dengan link dan bukti." data-en="Projects with links and proof.">Project dengan link dan bukti.</h2><p data-id="Beberapa project saya masih berupa prototype, tapi semuanya menunjukkan cara saya berpikir: cepat mencoba, memperbaiki, dan membuatnya bisa dipakai." data-en="Some projects are still prototypes, but they show how I think: try quickly, improve, and make the result usable.">Beberapa project saya masih berupa prototype, tapi semuanya menunjukkan cara saya berpikir: cepat mencoba, memperbaiki, dan membuatnya bisa dipakai.</p></div>
+          <div class="filters reveal" aria-label="Filter project"><button class="filter-btn is-active" data-filter="all">All</button><button class="filter-btn" data-filter="web">Web</button><button class="filter-btn" data-filter="mobile">Mobile</button><button class="filter-btn" data-filter="tools">Tools</button><button class="filter-btn" data-filter="game">Game</button><button class="filter-btn" data-filter="ar">AR</button></div>
           <div class="project-grid">
-            <article class="project-card reveal" data-category="code design">
-              <span class="project-tag">Game</span>
-              <h3>Ball Battle Arena</h3>
-              <p>Game simulasi battle berbasis web dengan karakter berbentuk bola, arena, balancing, recap, cinematic camera, dan update iteratif.</p>
-              <img class="project-logo" src="assets/images/ball-battle-arena.svg" alt="Logo Ball Battle Arena" />
-              <a class="project-link" href="https://eriksone225.github.io/ballgame/" target="_blank" rel="noopener noreferrer">Buka Ball Battle Arena</a>
+            <article class="project-card reveal" data-category="tools web">
+              <span class="project-tag">Tool · Computer Vision</span>
+              <h3>Image Harvest x Matcher</h3>
+              <p data-id="Prototype untuk mengambil kandidat gambar dan membantu membandingkan kecocokan visual lewat workflow image matching." data-en="A prototype for collecting image candidates and comparing visual matches through an image-matching workflow.">Prototype untuk mengambil kandidat gambar dan membantu membandingkan kecocokan visual lewat workflow image matching.</p>
+              <ul class="project-tech"><li>Python</li><li>Image matching</li><li>Automation</li></ul>
+              <a class="project-link" href="https://github.com/eriksone225/Image-Harvest-x-Matcher" target="_blank" rel="noopener noreferrer">GitHub</a>
             </article>
-            <article class="project-card reveal" data-category="code">
-              <span class="project-tag">Prototype</span>
-              <h3>Image Harvester</h3>
-              <p>Prototype visual-search/image-matching untuk mengumpulkan kandidat gambar, menampilkan hasil di GUI, dan membantu membandingkan kecocokan visual secara cepat.</p>
-            </article>
-            <article class="project-card reveal" data-category="code design">
-              <span class="project-tag">Web UI</span>
-              <h3>Portfolio Landing Page</h3>
-              <p>Website personal dengan visual gelap, glass yang lebih terkendali, struktur project jelas, dan copy yang lebih dekat dengan suara saya sendiri.</p>
-              <img src="assets/images/banner.png" alt="Liquid glass banner" />
-            </article>
-            <article class="project-card reveal" data-category="story design">
-              <span class="project-tag">Story Plan</span>
-              <h3>SEAVerse</h3>
-              <p>Original superhero world about SEA, E-17 anomalies, The Order, covert teams, and the cost of controlling power before it breaks civilization.</p>
-              <img src="assets/images/2.png" alt="Story planning mood" />
-            </article>
-            <article class="project-card reveal" data-category="story">
-              <span class="project-tag">Story Plan</span>
-              <h3>Batavia</h3>
-              <p>Concept story built around place, atmosphere, conflict, and the feeling of a city hiding older wounds under everyday life.</p>
-              <img src="assets/images/3.png" alt="Batavia story mood" />
-            </article>
-            <article class="project-card reveal" data-category="story">
-              <span class="project-tag">Story Plan</span>
-              <h3>Ordinary People</h3>
-              <p>Grounded character drama about ordinary people carrying private damage, ambition, shame, and small choices that quietly change them.</p>
-            </article>
-            <article class="project-card reveal" data-category="design">
-              <span class="project-tag">Brand</span>
+            <article class="project-card reveal" data-category="web mobile">
+              <span class="project-tag">Web + Android</span>
               <h3>KurShop</h3>
-              <p>Konsep logo dan identitas aplikasi warung online modern dengan vibe digital, Gen Z, dan warna khas.</p>
+              <p data-id="Ekosistem warung online: versi web dan Android untuk produk, transaksi, kategori, admin, dan alur aplikasi toko." data-en="An online shop ecosystem: web and Android versions for products, transactions, categories, admin, and store app flows.">Ekosistem warung online: versi web dan Android untuk produk, transaksi, kategori, admin, dan alur aplikasi toko.</p>
+              <ul class="project-tech"><li>Laravel/Blade</li><li>Kotlin</li><li>Admin flow</li></ul>
+              <div class="project-actions"><a class="project-link" href="https://github.com/eriksone225/KurShop" target="_blank" rel="noopener noreferrer">KurShop Web</a><a class="project-link" href="https://github.com/eriksone225/KurShopAndroid" target="_blank" rel="noopener noreferrer">KurShop Android</a></div>
+            </article>
+            <article class="project-card reveal" data-category="ar mobile">
+              <span class="project-tag">AR · Unity</span>
+              <h3>ARTEAM9 ESP2866 AR</h3>
+              <p data-id="Project AR berbasis Unity. Saya memimpin project dan mengambil peran sebagai Unity AR developer." data-en="A Unity-based AR project. I headed the project and worked as the Unity AR developer.">Project AR berbasis Unity. Saya memimpin project dan mengambil peran sebagai Unity AR developer.</p>
+              <ul class="project-tech"><li>Unity</li><li>C#</li><li>AR</li></ul>
+              <a class="project-link" href="https://github.com/eriksone225/ARTEAM9" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </article>
+            <article class="project-card reveal" data-category="web tools">
+              <span class="project-tag">Prediction Market</span>
+              <h3>Poldict</h3>
+              <p data-id="Platform prediction market tempat user membuat votables, vote prediksi, lalu mendapat poin berdasarkan hasil akhirnya." data-en="A prediction-market platform where users create votables, vote on predictions, and earn points based on the outcomes.">Platform prediction market tempat user membuat votables, vote prediksi, lalu mendapat poin berdasarkan hasil akhirnya.</p>
+              <ul class="project-tech"><li>Web app</li><li>Voting flow</li><li>Points system</li></ul>
+              <a class="project-link" href="https://github.com/eriksone225/poldict" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </article>
+            <article class="project-card reveal" data-category="game web">
+              <span class="project-tag">Browser Game</span>
+              <h3>Ball Battle Arena</h3>
+              <p data-id="Game simulasi battle berbasis web dengan karakter, arena, balancing, recap, dan update iteratif." data-en="A browser battle simulation with characters, arena logic, balancing, recaps, and iterative updates.">Game simulasi battle berbasis web dengan karakter, arena, balancing, recap, dan update iteratif.</p>
+              <ul class="project-tech"><li>HTML Canvas</li><li>JavaScript</li><li>Game logic</li></ul>
+              <a class="project-link" href="https://eriksone225.github.io/ballgame/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </article>
+            <article class="project-card reveal" data-category="web tools">
+              <span class="project-tag">Portfolio Feature</span>
+              <h3>Interactive Music Player</h3>
+              <p data-id="Fitur piringan hitam di website ini: bisa memilih lagu bawaan, upload file lokal, memakai audio URL, atau link YouTube." data-en="The vinyl music feature in this site: it supports built-in tracks, local uploads, direct audio URLs, and YouTube links.">Fitur piringan hitam di website ini: bisa memilih lagu bawaan, upload file lokal, memakai audio URL, atau link YouTube.</p>
+              <ul class="project-tech"><li>JavaScript</li><li>YouTube iframe</li><li>Audio API</li></ul>
+              <a class="project-link" href="#music" data-id="Coba fitur" data-en="Try feature">Coba fitur</a>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="writing" class="section writing-section">
-        <div class="container">
-          <div class="section-heading reveal"><span class="section-kicker">Stories & Worlds</span><h2>Writing that feels like a shelf of files.</h2></div>
-          <div class="writing-grid">
-            <article class="writing-card reveal">
-              <span class="project-tag">Worldbuilding · In progress</span>
-              <h3>SEAVerse</h3>
-              <p class="writing-hook">Superhuman geopolitics, secret organizations, public heroes, covert sins, and people trying to survive systems bigger than them.</p>
-              <blockquote>“The Director did not believe in heroes. He believed in systems, because systems could survive what men could not.”</blockquote>
-            </article>
-            <article class="writing-card reveal">
-              <span class="project-tag">Opening Volume · Draft</span>
-              <h3>Director</h3>
-              <p class="writing-hook">A political-superhuman opening about Erik Goebbel, SEA, and the price of building order before the world admits it needs one.</p>
-              <blockquote>Classified files, restrained narration, and a main character whose calm feels more dangerous than anger.</blockquote>
-            </article>
-            <article class="writing-card reveal">
-              <span class="project-tag">Drama · Concept</span>
-              <h3>Ordinary People</h3>
-              <p class="writing-hook">A grounded story about normal-looking people carrying damage, ambition, shame, and choices they cannot fully explain.</p>
-              <blockquote>Small rooms, heavy silences, and characters who reveal themselves through what they refuse to say.</blockquote>
-            </article>
-            <article class="writing-card reveal">
-              <span class="project-tag">Atmospheric Fiction · Concept</span>
-              <h3>Batavia</h3>
-              <p class="writing-hook">A story shaped by place: old city texture, hidden conflict, memory, and the feeling that the setting has its own secrets.</p>
-              <blockquote>Not just a location — a pressure cooker for history, fear, and people pretending nothing is wrong.</blockquote>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container split">
-          <div class="section-heading reveal"><span class="section-kicker">Timeline</span><h2>Dari tugas, game, sampai rencana cerita.</h2></div>
-          <div class="timeline">
-            <article class="timeline-item reveal"><span class="timeline-date">2011–2021</span><div><h3>Fondasi belajar</h3><p>Belajar, menulis, menonton, dan mulai membangun selera visual/naratif dari sekolah sampai SMA.</p></div></article>
-            <article class="timeline-item reveal"><span class="timeline-date">2024+</span><div><h3>Informatics era</h3><p>Masuk fase kuliah informatika dan mulai mengubah ide menjadi website, game, dan prototype digital.</p></div></article>
-            <article class="timeline-item reveal"><span class="timeline-date">Now</span><div><h3>Mahasiswa</h3><p>Menggabungkan coding, film, writing, desain, dan eksperimen AI/computer vision menjadi identitas kreatif.</p></div></article>
+      <section id="roadmap" class="section roadmap-section">
+        <div class="container split roadmap-split">
+          <div class="section-heading reveal"><h2 data-id="Dari tugas, game, sampai rencana cerita." data-en="From assignments, games, to story plans.">Dari tugas, game, sampai rencana cerita.</h2><p data-id="Roadmap pendidikan dan fase belajar saya, dari sekolah sampai sekarang membangun project yang lebih serius." data-en="My education and learning roadmap, from school to building more serious projects today.">Roadmap pendidikan dan fase belajar saya, dari sekolah sampai sekarang membangun project yang lebih serius.</p></div>
+          <div class="roadmap-line reveal">
+            <article class="timeline-item roadmap-item"><span class="timeline-date">2012–2020</span><div><h3>SD–SMP Al-Irsyad Satya Islamic School</h3><p data-id="Fase dasar: belajar disiplin, membentuk selera, mulai dekat dengan cerita, film, game, dan teknologi." data-en="Foundation phase: learning discipline, building taste, and getting closer to stories, film, games, and technology.">Fase dasar: belajar disiplin, membentuk selera, mulai dekat dengan cerita, film, game, dan teknologi.</p></div></article>
+            <article class="timeline-item roadmap-item"><span class="timeline-date">2021–2024</span><div><h3>SMA Labschool UPI</h3><p data-id="Fase eksplorasi: tugas sekolah, eksperimen web, desain, video, dan cara mempresentasikan ide agar terasa jelas." data-en="Exploration phase: school assignments, web experiments, design, video, and learning how to present ideas clearly.">Fase eksplorasi: tugas sekolah, eksperimen web, desain, video, dan cara mempresentasikan ide agar terasa jelas.</p></div></article>
+            <article class="timeline-item roadmap-item"><span class="timeline-date">2024–Present</span><div><h3>Politeknik Manufaktur Bandung</h3><p data-id="Fase produksi: informatika, project Android/web, AR, image matcher, game browser, dan portfolio yang terus saya iterasi." data-en="Production phase: informatics, Android/web projects, AR, image matcher, browser games, and a portfolio I keep iterating.">Fase produksi: informatika, project Android/web, AR, image matcher, game browser, dan portfolio yang terus saya iterasi.</p></div></article>
           </div>
         </div>
       </section>
 
       <section id="music" class="section">
         <div class="container">
-          <div class="section-heading center reveal"><span class="section-kicker">Interactive Music</span><h2>Piringan yang bisa dipilih.</h2><p>Pilih lagu bawaan, upload file lokal, tempel URL audio langsung, atau masukkan link YouTube. Untuk YouTube, cover piringan otomatis memakai thumbnail video.</p></div>
+          <div class="section-heading center reveal"><h2 data-id="Music player sebagai fitur, bukan hiasan." data-en="A music player as a feature, not decoration.">Music player sebagai fitur, bukan hiasan.</h2><p data-id="Pilih lagu bawaan, upload file lokal, tempel URL audio langsung, atau masukkan link YouTube. Untuk YouTube, cover piringan otomatis memakai thumbnail video." data-en="Choose a built-in track, upload a local file, paste a direct audio URL, or enter a YouTube link. YouTube tracks automatically use the video thumbnail as the vinyl cover.">Pilih lagu bawaan, upload file lokal, tempel URL audio langsung, atau masukkan link YouTube. Untuk YouTube, cover piringan otomatis memakai thumbnail video.</p></div>
           <div class="music-player reveal">
             <div class="music-disc-wrap">
               <button class="music-disc" type="button" aria-label="Play atau pause lagu"><img class="disc-cover" src="assets/images/1.png" alt="Cover lagu" /></button>
@@ -197,13 +219,34 @@
 
       <section id="contact" class="section contact-section">
         <div class="container contact-card reveal">
-          <div><span class="section-kicker">Contact</span><h2>Let’s build something strange yet polished.</h2><p>Untuk kolaborasi website, prototype, game browser, logo, portfolio, naskah, atau project kreatif lain.</p><div class="contact-methods"><a href="mailto:muhammadfarrelkrisnanegara@gmail.com?subject=Portfolio%20Collaboration">muhammadfarrelkrisnanegara@gmail.com</a><a href="https://www.instagram.com/farrelkrsn/" target="_blank" rel="noopener noreferrer">@farrelkrsn</a><span>Indonesia · Bandung / Remote preferred</span></div></div>
-          <div class="contact-panel"><h3>Positioning</h3><p><strong>Creative Technologist</strong> — bukan cuma coder, bukan cuma penulis. Saya membangun project dengan rasa cerita, visual, interaksi, dan iterasi.</p><a class="btn btn-primary" href="mailto:muhammadfarrelkrisnanegara@gmail.com?subject=Portfolio%20Collaboration">Kirim Email</a></div>
+          <div>
+            <h2 data-id="Kirim pesan langsung ke email saya." data-en="Send a message straight to my email.">Kirim pesan langsung ke email saya.</h2>
+            <p data-id="Untuk kolaborasi website, prototype, game browser, aplikasi Android, AR, logo, portfolio, naskah, atau project kreatif lain." data-en="For website collaborations, prototypes, browser games, Android apps, AR, logos, portfolios, scripts, or other creative projects.">Untuk kolaborasi website, prototype, game browser, aplikasi Android, AR, logo, portfolio, naskah, atau project kreatif lain.</p>
+            <div class="contact-methods">
+              <a href="mailto:muhammadfarrelkrisnanegara@gmail.com?subject=Portfolio%20Collaboration">muhammadfarrelkrisnanegara@gmail.com</a>
+              <a href="https://www.linkedin.com/in/farrel-krisnanegara-b2a252220/" target="_blank" rel="noopener noreferrer">LinkedIn · Farrel Krisna</a>
+              <a href="https://github.com/eriksone225" target="_blank" rel="noopener noreferrer">GitHub · eriksone225</a>
+              <a href="https://www.instagram.com/farrelkrsn/" target="_blank" rel="noopener noreferrer">Instagram · @farrelkrsn</a>
+              <span data-id="Indonesia · Bandung / Remote preferred" data-en="Indonesia · Bandung / Remote preferred">Indonesia · Bandung / Remote preferred</span>
+            </div>
+          </div>
+          <form class="contact-panel contact-form" action="https://formsubmit.co/muhammadfarrelkrisnanegara@gmail.com" method="POST" target="_blank">
+            <input type="hidden" name="_subject" value="New portfolio message for Farrel Krisna" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
+            <label><span data-id="Nama" data-en="Name">Nama</span><input name="name" type="text" required placeholder="Nama kamu" data-placeholder-id="Nama kamu" data-placeholder-en="Your name" /></label>
+            <label><span>Email</span><input name="email" type="email" required placeholder="email@domain.com" /></label>
+            <label><span data-id="Project" data-en="Project">Project</span><input name="project" type="text" placeholder="Website, Android, AR, game..." data-placeholder-id="Website, Android, AR, game..." data-placeholder-en="Website, Android, AR, game..." /></label>
+            <label><span data-id="Pesan" data-en="Message">Pesan</span><textarea name="message" rows="5" required placeholder="Tulis pesan kamu di sini." data-placeholder-id="Tulis pesan kamu di sini." data-placeholder-en="Write your message here."></textarea></label>
+            <button class="btn btn-primary" type="submit" data-id="Kirim ke Email" data-en="Send to Email">Kirim ke Email</button>
+            <p class="form-note" data-id="Form ini memakai FormSubmit agar bisa berjalan di static hosting. Kiriman pertama biasanya perlu aktivasi email satu kali." data-en="This form uses FormSubmit so it can work on static hosting. The first submission usually requires one email activation.">Form ini memakai FormSubmit agar bisa berjalan di static hosting. Kiriman pertama biasanya perlu aktivasi email satu kali.</p>
+          </form>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer"><div class="container footer-grid"><strong>Farrel Krisna</strong><span>© 2026. Made by Farrel Krisna.</span><div class="footer-links"><a href="#profil">Profil</a><a href="#projects">Project</a><a href="#writing">Writing</a><a href="#music">Musik</a></div></div></footer>
+    <footer class="site-footer"><div class="container footer-grid"><strong>Farrel Krisna</strong><span>© 2026. Made by Farrel Krisna.</span><div class="footer-links"><a href="#profil" data-id="Profil" data-en="Profile">Profil</a><a href="#projects" data-id="Project" data-en="Projects">Project</a><a href="#roadmap" data-id="Roadmap" data-en="Roadmap">Roadmap</a><a href="#music" data-id="Musik" data-en="Music">Musik</a><a href="https://www.linkedin.com/in/farrel-krisnanegara-b2a252220/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div></footer>
     <script src="script.js"></script>
   </body>
 </html>

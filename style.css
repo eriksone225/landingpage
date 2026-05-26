@@ -963,3 +963,237 @@ input[type="file"]::file-selector-button {
   .roadmap-item::before { left: 5px; }
   .contact-card { padding: 18px; }
 }
+
+/* === School logos + bilingual layout stability pass ===
+   Keeps cards stable when switching Indonesian / English copy. */
+.hero-info-dock,
+.cards-grid,
+.project-grid,
+.roadmap-line {
+  align-items: stretch;
+}
+
+.hero-title {
+  min-height: clamp(6.2rem, 15vw, 15.1rem);
+  display: grid;
+  place-items: center;
+}
+
+.hero-subtitle {
+  min-height: 4.35em;
+}
+
+.hero-info-card {
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-info-card strong {
+  min-height: 1.35em;
+}
+
+.hero-info-card span {
+  min-height: 4.5em;
+}
+
+.cards-grid .glass-card {
+  min-height: 258px;
+  display: flex;
+  flex-direction: column;
+}
+
+.glass-card p {
+  min-height: 6.48em;
+}
+
+.glass-card ul {
+  min-height: 5.9em;
+}
+
+.glass-card p,
+.hero-info-card span,
+.project-card p,
+.roadmap-content p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.glass-card p,
+.hero-info-card span {
+  -webkit-line-clamp: 4;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 392px;
+}
+
+.project-card h3 {
+  min-height: 2.55em;
+  display: flex;
+  align-items: flex-start;
+}
+
+.project-card p {
+  min-height: 5.18em;
+  -webkit-line-clamp: 4;
+}
+
+.project-tech {
+  min-height: 35px;
+}
+
+.project-card > .project-link,
+.project-actions {
+  margin-top: auto;
+}
+
+.section-heading p {
+  min-height: 3.35em;
+}
+
+.lang-toggle {
+  width: 58px;
+  min-width: 58px;
+}
+
+.nav-links a {
+  justify-content: center;
+}
+
+.tech-orbit {
+  min-height: 96px;
+}
+
+.stack-pills span {
+  min-width: 236px;
+  justify-content: center;
+}
+
+.language-card {
+  min-height: 164px;
+}
+
+.roadmap-line {
+  gap: 18px;
+}
+
+.roadmap-item {
+  grid-template-columns: 128px 76px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 176px;
+  padding: 20px 22px 20px 52px;
+}
+
+.school-logo-wrap {
+  width: 68px;
+  height: 68px;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(141,246,215,.24);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.70)),
+    rgba(255,255,255,.86);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    0 18px 34px rgba(0,0,0,.24);
+  overflow: hidden;
+}
+
+.school-logo {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.roadmap-content {
+  min-width: 0;
+}
+
+.roadmap-content h3 {
+  min-height: 2.7em;
+  display: flex;
+  align-items: flex-end;
+}
+
+.roadmap-content p {
+  min-height: 4.86em;
+  -webkit-line-clamp: 3;
+}
+
+@media (max-width: 1040px) {
+  .hero-title {
+    min-height: clamp(5.8rem, 16vw, 11rem);
+  }
+
+  .hero-subtitle {
+    min-height: 5.25em;
+  }
+
+  .roadmap-item {
+    grid-template-columns: 116px 72px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-title {
+    min-height: 8.2rem;
+  }
+
+  .hero-subtitle,
+  .section-heading p {
+    min-height: auto;
+  }
+
+  .hero-info-card,
+  .cards-grid .glass-card,
+  .project-card {
+    min-height: 0;
+  }
+
+  .project-card h3,
+  .project-card p,
+  .project-tech,
+  .hero-info-card span,
+  .glass-card p,
+  .glass-card ul {
+    min-height: 0;
+  }
+
+  .roadmap-item {
+    grid-template-columns: 76px minmax(0, 1fr);
+    min-height: 190px;
+    padding: 20px 18px 20px 48px;
+  }
+
+  .roadmap-item .timeline-date {
+    grid-column: 1 / -1;
+  }
+
+  .school-logo-wrap {
+    width: 62px;
+    height: 62px;
+  }
+
+  .roadmap-content h3 {
+    min-height: 0;
+    align-items: flex-start;
+  }
+
+  .roadmap-content p {
+    min-height: 5em;
+    -webkit-line-clamp: 4;
+  }
+
+  .stack-pills span {
+    width: 100%;
+    min-width: 0;
+  }
+}

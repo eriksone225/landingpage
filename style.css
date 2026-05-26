@@ -1197,3 +1197,310 @@ input[type="file"]::file-selector-button {
     min-width: 0;
   }
 }
+
+
+/* === Button visibility update: clearer pressable indicators === */
+/* Only button-like elements are adjusted here; layout, cards, text, and scripts stay unchanged. */
+.btn,
+.filter-btn,
+.project-link,
+.menu-toggle,
+input[type="file"]::file-selector-button {
+  border-color: rgba(141, 246, 215, .30);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -10px 22px rgba(0,0,0,.18),
+    0 0 0 1px rgba(141,246,215,.08),
+    0 10px 24px rgba(0,0,0,.20);
+}
+
+.btn,
+.filter-btn,
+.project-link,
+.menu-toggle,
+.music-disc,
+input[type="file"]::file-selector-button {
+  cursor: pointer;
+}
+
+.music-disc {
+  border: 1px solid rgba(141,246,215,.32);
+}
+
+.btn-primary,
+.filter-btn.is-active,
+input[type="file"]::file-selector-button {
+  border-color: rgba(248,255,253,.46);
+  text-shadow: 0 1px 0 rgba(255,255,255,.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.56),
+    inset 0 -12px 24px rgba(3,8,6,.12),
+    0 0 0 1px rgba(141,246,215,.22),
+    0 14px 32px rgba(127,255,212,.18);
+}
+
+.btn-secondary,
+.btn-ghost,
+.filter-btn:not(.is-active),
+.project-link,
+.menu-toggle {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.088), rgba(255,255,255,.045));
+  border-color: rgba(141,246,215,.24);
+  text-shadow: 0 1px 0 rgba(0,0,0,.22);
+}
+
+.btn:hover,
+.filter-btn:hover,
+.project-link:hover,
+.menu-toggle:hover,
+input[type="file"]::file-selector-button:hover {
+  border-color: rgba(141,246,215,.46);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -10px 22px rgba(0,0,0,.16),
+    0 0 0 3px rgba(141,246,215,.065),
+    0 14px 30px rgba(0,0,0,.24);
+}
+
+.music-disc:hover,
+.music-disc.is-hover-preview {
+  border-color: rgba(141,246,215,.48);
+  box-shadow:
+    0 0 0 1px rgba(127,255,212,.34),
+    0 0 92px rgba(127,255,212,.32),
+    0 22px 70px rgba(0,0,0,.34);
+}
+
+.btn-primary:hover,
+.filter-btn.is-active:hover,
+input[type="file"]::file-selector-button:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 -12px 24px rgba(3,8,6,.10),
+    0 0 0 3px rgba(141,246,215,.12),
+    0 16px 34px rgba(127,255,212,.22);
+}
+
+.btn:active,
+.filter-btn:active,
+.project-link:active,
+.menu-toggle:active,
+input[type="file"]::file-selector-button:active {
+  transform: translateY(0) scale(.985);
+  box-shadow:
+    inset 0 2px 10px rgba(0,0,0,.26),
+    0 0 0 2px rgba(141,246,215,.10),
+    0 8px 18px rgba(0,0,0,.18);
+}
+
+.music-disc:active {
+  filter: saturate(1.08) brightness(.96);
+}
+
+.btn:focus-visible,
+.filter-btn:focus-visible,
+.project-link:focus-visible,
+.menu-toggle:focus-visible,
+.music-disc:focus-visible,
+input[type="file"]::file-selector-button:focus-visible {
+  outline: 2px solid rgba(141,246,215,.78);
+  outline-offset: 3px;
+}
+
+
+/* === Targeted project + contact button clarity update ===
+   Stronger affordance only for clickable project/contact controls; no layout or JS changes. */
+#projects .project-link {
+  min-height: 44px;
+  padding: 0 17px 0 18px;
+  gap: 9px;
+  border: 1px solid rgba(141,246,215,.56);
+  background:
+    radial-gradient(circle at 25% 0%, rgba(255,255,255,.24), transparent 38%),
+    linear-gradient(180deg, rgba(141,246,215,.22), rgba(141,246,215,.09));
+  color: #f8fffd;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 -12px 24px rgba(0,0,0,.20),
+    0 0 0 1px rgba(141,246,215,.12),
+    0 12px 28px rgba(0,0,0,.25),
+    0 0 22px rgba(127,255,212,.10);
+}
+
+#projects .project-link::after {
+  content: "↗";
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgba(141,246,215,.86);
+  color: #03100d;
+  font-size: .74rem;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 0 16px rgba(127,255,212,.22);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+#projects .project-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(141,246,215,.78);
+  background:
+    radial-gradient(circle at 25% 0%, rgba(255,255,255,.32), transparent 40%),
+    linear-gradient(180deg, rgba(141,246,215,.30), rgba(141,246,215,.13));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.48),
+    inset 0 -12px 24px rgba(0,0,0,.16),
+    0 0 0 3px rgba(141,246,215,.08),
+    0 15px 34px rgba(0,0,0,.30),
+    0 0 30px rgba(127,255,212,.16);
+}
+
+#projects .project-link:hover::after {
+  transform: translateX(2px) translateY(-2px);
+  background: #f8fffd;
+}
+
+#projects .project-link:active {
+  transform: translateY(0) scale(.985);
+}
+
+.contact-methods a {
+  position: relative;
+  min-height: 52px;
+  padding: 14px 48px 14px 16px;
+  border: 1px solid rgba(141,246,215,.42);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255,255,255,.18), transparent 34%),
+    linear-gradient(180deg, rgba(141,246,215,.16), rgba(255,255,255,.055));
+  color: #f8fffd;
+  font-weight: 840;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.26),
+    inset 4px 0 0 rgba(141,246,215,.55),
+    0 10px 26px rgba(0,0,0,.20),
+    0 0 22px rgba(127,255,212,.06);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.contact-methods a::after {
+  content: "↗";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(141,246,215,.88);
+  color: #03100d;
+  font-size: .8rem;
+  font-weight: 950;
+  box-shadow: 0 0 18px rgba(127,255,212,.22);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.contact-methods a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(141,246,215,.70);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255,255,255,.24), transparent 36%),
+    linear-gradient(180deg, rgba(141,246,215,.22), rgba(255,255,255,.075));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 4px 0 0 rgba(248,255,253,.78),
+    0 14px 30px rgba(0,0,0,.25),
+    0 0 28px rgba(127,255,212,.13);
+}
+
+.contact-methods a:hover::after {
+  transform: translateY(-50%) translateX(2px) translateY(-2px);
+  background: #f8fffd;
+}
+
+.contact-methods a:active {
+  transform: translateY(0) scale(.99);
+}
+
+.contact-methods a:focus-visible {
+  outline: 2px solid rgba(141,246,215,.84);
+  outline-offset: 3px;
+}
+
+.contact-methods span {
+  border-color: rgba(141,246,215,.20);
+  background: rgba(255,255,255,.045);
+  color: rgba(248,255,253,.78);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+/* === Skill icon, roadmap connector, and contact form font update === */
+.card-icon.skill-icon {
+  font-size: 0;
+}
+
+.card-icon.skill-icon svg {
+  width: 25px;
+  height: 25px;
+  display: block;
+  color: currentColor;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.24));
+}
+
+/* Remove the roadmap connector line/nodes so the school cards stand on their own. */
+.roadmap-line::before,
+.roadmap-item::before {
+  content: none !important;
+  display: none !important;
+}
+
+.roadmap-item {
+  padding-left: 22px;
+}
+
+/* Keep the contact form typography consistent with the rest of the portfolio. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.contact-card,
+.contact-card h2,
+.contact-card p,
+.contact-methods a,
+.contact-methods span,
+.contact-form,
+.contact-form label,
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  font-family: inherit;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-weight: 760;
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  font-family: inherit;
+  font-weight: 760;
+  letter-spacing: normal;
+}
+
+@media (max-width: 720px) {
+  .roadmap-item {
+    padding-left: 18px;
+  }
+}

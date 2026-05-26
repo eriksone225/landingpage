@@ -1504,3 +1504,159 @@ textarea {
     padding-left: 18px;
   }
 }
+
+
+/* === Mobile contact-card + iOS range polish ===
+   Keeps the bottom contact card inside the viewport and makes long contact text wrap safely. */
+.contact-card > *,
+.contact-methods,
+.contact-methods a,
+.contact-methods span,
+.contact-form,
+.contact-form label {
+  min-width: 0;
+}
+
+.contact-methods a,
+.contact-methods span {
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.contact-card h2,
+.contact-card p {
+  overflow-wrap: anywhere;
+}
+
+.range-row {
+  min-width: 0;
+}
+
+.range-row input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 34px;
+  touch-action: pan-y;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.range-row input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(141,246,215,.72), rgba(255,255,255,.20));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
+}
+
+.range-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border: 2px solid rgba(3,16,13,.84);
+  border-radius: 999px;
+  background: #f8fffd;
+  box-shadow: 0 0 0 4px rgba(141,246,215,.16), 0 8px 18px rgba(0,0,0,.28);
+}
+
+.range-row input[type="range"]::-moz-range-track {
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(141,246,215,.72), rgba(255,255,255,.20));
+}
+
+.range-row input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(3,16,13,.84);
+  border-radius: 999px;
+  background: #f8fffd;
+  box-shadow: 0 0 0 4px rgba(141,246,215,.16), 0 8px 18px rgba(0,0,0,.28);
+}
+
+@media (max-width: 720px) {
+  .contact-section {
+    overflow-x: clip;
+  }
+
+  .contact-card.container {
+    width: min(calc(100% - 22px), 1160px);
+    max-width: calc(100vw - 22px);
+    margin-inline: auto;
+  }
+
+  .contact-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 18px;
+    border-radius: 26px;
+    overflow: hidden;
+  }
+
+  .contact-card h2 {
+    font-size: clamp(1.72rem, 9.2vw, 2.28rem);
+    line-height: 1.03;
+    letter-spacing: -.055em;
+  }
+
+  .contact-card > div:first-child > p {
+    font-size: .96rem;
+    line-height: 1.55;
+  }
+
+  .contact-methods {
+    gap: 9px;
+  }
+
+  .contact-methods a,
+  .contact-methods span {
+    align-items: flex-start;
+    min-height: 50px;
+    padding: 13px 44px 13px 14px;
+    line-height: 1.35;
+    font-size: .92rem;
+  }
+
+  .contact-methods a::after {
+    right: 12px;
+    top: 13px;
+    transform: none;
+  }
+
+  .contact-methods a:hover::after {
+    transform: translateX(2px) translateY(-2px);
+  }
+
+  .contact-panel {
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 390px) {
+  .contact-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .contact-card h2 {
+    font-size: clamp(1.56rem, 8.7vw, 1.95rem);
+  }
+
+  .contact-methods a,
+  .contact-methods span {
+    padding-right: 40px;
+    font-size: .88rem;
+  }
+}

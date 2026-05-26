@@ -94,6 +94,84 @@
   let hoverWasPlayingBefore = false;
   let mediaSwitchId = 0;
   let ignoringYouTubeEvents = false;
+  let audioContext = null;
+  let audioSourceNode = null;
+  let audioGainNode = null;
+
+  const isAppleTouchDevice = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  const clampVolume = (value) => {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return 1;
+    return Math.min(1, Math.max(0, parsed));
+  };
+
+  const setGainVolume = (value) => {
+    if (!audioGainNode || !audioContext) return;
+    const gainValue = clampVolume(value);
+    try {
+      if (typeof audioGainNode.gain.setTargetAtTime === 'function') {
+        audioGainNode.gain.setTargetAtTime(gainValue, audioContext.currentTime, 0.01);
+      } else {
+        audioGainNode.gain.value = gainValue;
+      }
+    } catch {
+      audioGainNode.gain.value = gainValue;
+    }
+  };
+
+  const applyVolume = (rawValue = volume?.value ?? 1) => {
+    const value = clampVolume(rawValue);
+
+    if (volume && volume.value !== String(value)) {
+      volume.value = String(value);
+    }
+
+    if (audio) {
+      try { audio.volume = value; } catch {}
+    }
+
+    setGainVolume(value);
+
+    try {
+      youtubePlayer?.setVolume?.(Math.round(value * 100));
+    } catch {
+      // Mobile YouTube iframes may ignore programmatic volume, but local audio still uses the gain fallback.
+    }
+  };
+
+  const ensureAudioGainContext = async () => {
+    if (!audio || !isAppleTouchDevice()) return false;
+
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) {
+      applyVolume();
+      return false;
+    }
+
+    try {
+      if (!audioContext) audioContext = new AudioContextClass();
+
+      if (!audioSourceNode) {
+        audioSourceNode = audioContext.createMediaElementSource(audio);
+        audioGainNode = audioContext.createGain();
+        audioSourceNode.connect(audioGainNode);
+        audioGainNode.connect(audioContext.destination);
+      }
+
+      setGainVolume(volume?.value ?? 1);
+
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+
+      return true;
+    } catch {
+      applyVolume();
+      return false;
+    }
+  };
+
 
   const formatTime = (seconds) => {
     if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
@@ -325,7 +403,7 @@
         onReady: (event) => {
           if (!isSelectedYouTube(videoId)) return;
           const target = event.target;
-          target.setVolume(Math.round(Number(volume?.value ?? 1) * 100));
+          applyVolume();
           if (autoplay) target.playVideo();
           else target.cueVideoById(videoId);
           updateYouTubeProgress();
@@ -375,7 +453,7 @@
     try {
       if (autoplay) youtubePlayer.loadVideoById(videoId);
       else youtubePlayer.cueVideoById(videoId);
-      youtubePlayer.setVolume(Math.round(Number(volume?.value ?? 1) * 100));
+      applyVolume();
       syncYouTubeTitleFromPlayer(videoId);
     } catch {
       pendingYouTube = { videoId, autoplay };
@@ -438,11 +516,17 @@
     prepareAudioOption(option);
 
     if (autoplay) {
-      audio.play().then(() => {
-        if (mediaSwitchId === switchId && selectedType() === 'audio') setPlaying(true);
-      }).catch(() => {
-        if (mediaSwitchId === switchId) setPlaying(false);
-      });
+      ensureAudioGainContext()
+        .then(() => {
+          applyVolume();
+          return audio.play();
+        })
+        .then(() => {
+          if (mediaSwitchId === switchId && selectedType() === 'audio') setPlaying(true);
+        })
+        .catch(() => {
+          if (mediaSwitchId === switchId) setPlaying(false);
+        });
     }
   };
 
@@ -471,6 +555,8 @@
     }
 
     try {
+      await ensureAudioGainContext();
+      applyVolume();
       await audio.play();
       return true;
     } catch {
@@ -569,15 +655,20 @@
     audio.currentTime = amount * audio.duration;
   });
 
-  volume?.addEventListener('input', () => {
-    const value = Number(volume.value);
-    if (audio) audio.volume = value;
-    try {
-      youtubePlayer?.setVolume?.(Math.round(value * 100));
-    } catch {
-      // Keep the UI responsive even if the iframe is not ready yet.
-    }
-  });
+  const handleVolumeInput = () => {
+    applyVolume(volume?.value ?? 1);
+  };
+
+  volume?.addEventListener('pointerdown', () => {
+    ensureAudioGainContext();
+  }, { passive: true });
+
+  volume?.addEventListener('touchstart', () => {
+    ensureAudioGainContext();
+  }, { passive: true });
+
+  volume?.addEventListener('input', handleVolumeInput);
+  volume?.addEventListener('change', handleVolumeInput);
 
   fileInput?.addEventListener('change', () => {
     const file = fileInput.files?.[0];
@@ -670,5 +761,6 @@
   try { savedLang = localStorage.getItem('farrel-portfolio-lang') || 'id'; } catch {}
   setLanguage(savedLang);
 
+  applyVolume();
   loadFromOption(false);
 })();
